@@ -56,10 +56,7 @@ export const ResultsSection = ({
     return () => clearInterval(interval);
   }, [countdown, revealed]);
 
-  const handleMouseMove = (
-    event: React.MouseEvent<HTMLDivElement>,
-    participant: string
-  ) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!hoveredCard || !showAnimation) return;
 
     const card = event.currentTarget;
@@ -193,7 +190,7 @@ export const ResultsSection = ({
                       }}
                     >
                       <Card
-                        onMouseMove={(e) => handleMouseMove(e, participant)}
+                        onMouseMove={(e) => handleMouseMove(e)}
                         onMouseEnter={() => handleMouseEnter(participant)}
                         onMouseLeave={handleMouseLeave}
                         sx={{
