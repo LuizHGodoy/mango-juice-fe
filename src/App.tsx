@@ -1,3 +1,7 @@
+import PlanningRoom from "@/components/PlanningRoom";
+import RoomEntry from "@/components/RoomEntry";
+import { API_URL } from "@/config";
+import { clearRoomData } from "@/utils/storage";
 import {
   CssBaseline,
   ThemeProvider,
@@ -5,9 +9,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import PlanningRoom from "./components/PlanningRoom";
-import RoomEntry from "./components/RoomEntry";
-import { API_URL } from "./config";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -90,11 +91,15 @@ function App() {
   };
 
   const handleLeaveRoom = () => {
-    setRoomState({
+    const newState = {
       inRoom: false,
       roomId: "",
       username: "",
-    });
+    };
+    setRoomState(newState);
+    if (roomState.roomId) {
+      clearRoomData(roomState.roomId);
+    }
     localStorage.removeItem("roomState");
   };
 
