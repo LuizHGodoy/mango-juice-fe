@@ -42,7 +42,6 @@ export const ResultsSection = ({
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [dots, setDots] = useState("...");
 
-  // Verifica se todos os participantes votaram
   const allVoted =
     participants.length > 0 &&
     participants.every((participant) => votes[participant]);
